@@ -31,6 +31,7 @@ dependencies {
     testImplementation 'org.testcontainers:testcontainers:1.21.4'
     testRuntimeOnly 'com.h2database:h2'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'me.paulschwarz:spring-dotenv:4.0.0'
 }
 
 apply from: 'gradle/engine.gradle'
