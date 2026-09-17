@@ -19,13 +19,15 @@ public class PlayerService {
 
     @Transactional
     public void createPlayer(CreatePlayerRequest request) {
-        // TODO Lv 3: 닉네임 중복을 확인하고 플레이어를 저장합니다.
-        throw new UnsupportedOperationException("Lv 3: 플레이어 등록을 구현하세요.");
+        if(playerRepository.existsByNickname(request.getNickname())){
+            throw new ConflictException("DUPLICATE_NICKNAME");
+        }
+        savePlayer(new Player(request.getNickname()));
     }
 
     private void savePlayer(Player player) {
         try {
-            playerRepository.saveAndFlush(player);
+            playerRepository.saveAndFlush(player); // saveAndFlush = 바로 flush 해서 유니크 제약 위반을 회피
         } catch (org.springframework.dao.DataIntegrityViolationException failure) {
             throw new ConflictException("DUPLICATE_NICKNAME");
         }
