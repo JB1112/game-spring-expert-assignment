@@ -1,19 +1,17 @@
 package com.gameexpert.ws;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
 import com.gameexpert.engine.ActionQueueOverflowException;
 import com.gameexpert.ws.dto.WsMessages.Error;
 import com.gameexpert.ws.handler.EngineMessageHandler;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class MessageRouter {
@@ -56,6 +54,7 @@ public class MessageRouter {
         }
         try {
             // TODO Lv 11: handler에 context와 message를 전달해 handle()을 호출합니다.
+            handler.handle(context, message);
         } catch (ActionQueueOverflowException exception) {
             log.warn("액션 큐 상한 초과로 거부: type={}, world={}, nickname={}",
                     type, context.worldId(), context.nickname());
