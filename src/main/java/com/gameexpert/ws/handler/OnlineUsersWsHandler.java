@@ -1,10 +1,5 @@
 package com.gameexpert.ws.handler;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import com.gameexpert.api.SessionRegistry;
 import com.gameexpert.ws.NicknameHandshakeInterceptor;
 import com.gameexpert.ws.WorldBroadcaster;
@@ -13,8 +8,12 @@ import com.gameexpert.ws.WsMessageContext;
 import com.gameexpert.ws.dto.OnlineUsersResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.socket.WebSocketSession;
 import tools.jackson.databind.JsonNode;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
